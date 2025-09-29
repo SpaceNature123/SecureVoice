@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SecureVoice - Anonymous complaint platform for workplace concerns">
+    <title>SecureVoice - Anonymous Complaint Platform</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <svg class="logo-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                </svg>
+                SecureVoice
+            </div>
+            <div class="hamburger" onclick="app.toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a class="nav-link active" onclick="app.showPage('home')">Home</a></li>
+                <li><a class="nav-link" onclick="app.showPage('features')">Features</a></li>
+                <li><a class="nav-link" onclick="app.showPage('how-it-works')">How It Works</a></li>
+                <li><a class="nav-link" onclick="app.showPage('about')">About</a></li>
+                <li><a class="nav-link" onclick="app.showPage('contact')">Contact</a></li>
+                <li><button class="cta-button" onclick="app.showPage('app')">Launch App</button></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Home Page -->
+    <div id="home" class="page active">
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Your Voice Matters, Your Identity Protected</h1>
+                <p>A secure, anonymous platform for reporting workplace concerns, harassment, and ethical violations. Speak up without fear, drive positive change.</p>
+                <div class="hero-buttons">
+                    <button class="btn-large btn-primary-large" onclick="app.showPage('app')">Submit a Complaint</button>
+                    <button class="btn-large btn-secondary-large" onclick="app.showPage('how-it-works')">Learn More</button>
+                </div>
+            </div>
+            <div class="hero-animation">
+                <div class="floating-icon"></div>
+                <div class="floating-icon"></div>
+                <div class="floating-icon"></div>
+            </div>
+        </section>
+
+        <section class="features">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Why Choose SecureVoice?</h2>
+                    <p>Built with security, privacy, and transparency at its core</p>
+                </div>
+                <div class="features-grid" id="homeFeatures"></div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Features Page -->
+    <div id="features" class="page">
+        <section class="features">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Powerful Features for Everyone</h2>
+                    <p>Everything you need for effective complaint management</p>
+                </div>
+                <div class="features-grid" id="allFeatures"></div>
+            </div>
+        </section>
+    </div>
+
+    <!-- How It Works Page -->
+    <div id="how-it-works" class="page">
+        <section class="how-it-works">
+            <div class="container">
+                <div class="section-header">
+                    <h2>How It Works</h2>
+                    <p>Simple, secure, and straightforward process</p>
+                </div>
+                <div class="steps" id="stepsContainer"></div>
+            </div>
+        </section>
+    </div>
+
+    <!-- About Page -->
+    <div id="about" class="page">
+        <section class="about">
+            <div class="container">
+                <div class="section-header">
+                    <h2>About SecureVoice</h2>
+                    <p>Building safer, more transparent organizations</p>
+                </div>
+                <div class="about-content">
+                    <p>SecureVoice is a professional anonymous complaint management platform designed to empower individuals to report workplace concerns, harassment, discrimination, and ethical violations without fear of retaliation.</p>
+                    
+                    <p>We believe that every voice deserves to be heard, and that anonymity shouldn't compromise accountability. Our platform bridges the gap between protecting whistleblowers and ensuring organizations can address legitimate concerns effectively.</p>
+                    
+                    <p>Built with modern web technologies and security best practices, SecureVoice provides a reliable, user-friendly solution for organizations of all sizes committed to fostering ethical, safe work environments.</p>
+
+                    <div class="stats-grid">
+                        <div class="stat-box">
+                            <div class="stat-number">100%</div>
+                            <div class="stat-label">Anonymous</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-number">24/7</div>
+                            <div class="stat-label">Availability</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-number">Secure</div>
+                            <div class="stat-label">Platform</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-number">Fast</div>
+                            <div class="stat-label">Response</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Contact Page -->
+    <div id="contact" class="page">
+        <section class="contact">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Get In Touch</h2>
+                    <p>Have questions? We're here to help</p>
+                </div>
+                <div class="contact-grid" id="contactCards"></div>
+            </div>
+        </section>
+    </div>
+
+    <!-- App Page -->
+    <div id="app" class="page">
+        <section class="app-section">
+            <div class="container">
+                <div class="tabs">
+                    <button class="tab-btn active" onclick="app.switchAppTab('submit', event)">Submit Complaint</button>
+                    <button class="tab-btn" onclick="app.switchAppTab('view', event)">View Complaints</button>
+                    <button class="tab-btn" onclick="app.switchAppTab('track', event)">Track Complaint</button>
+                    <button class="tab-btn" onclick="app.switchAppTab('admin', event)">Admin Panel</button>
+                    <button class="tab-btn" onclick="app.switchAppTab('analytics', event)">Analytics</button>
+                </div>
+
+                <!-- Submit Complaint Tab (Wizard) -->
+                <div id="submit" class="tab-content active">
+                    <div class="card">
+                        <h2 style="margin-bottom: 20px; color: #2d3748;">Submit Anonymous Complaint</h2>
+                        <div id="submitAlert"></div>
+                        <div id="wizardContainer"></div>
+                    </div>
+                </div>
+
+                <!-- View Complaints Tab -->
+                <div id="view" class="tab-content">
+                    <div class="card">
+                        <h2 style="margin-bottom: 20px; color: #2d3748;">All Complaints</h2>
+                        
+                        <div class="filters">
+                            <div class="filter-select">
+                                <select id="filterCategory" onchange="app.filterComplaints()">
+                                    <option value="">All Categories</option>
+                                    <option value="harassment">Harassment</option>
+                                    <option value="discrimination">Discrimination</option>
+                                    <option value="safety">Safety Concern</option>
+                                    <option value="ethics">Ethical Violation</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            <div class="filter-select">
+                                <select id="filterStatus" onchange="app.filterComplaints()">
+                                    <option value="">All Status</option>
+                                    <option value="pending">Pending</option>
+                                    <option value="reviewing">Reviewing</option>
+                                    <option value="resolved">Resolved</option>
+                                </select>
+                            </div>
+                            <div class="filter-select">
+                                <select id="filterPriority" onchange="app.filterComplaints()">
+                                    <option value="">All Priorities</option>
+                                    <option value="urgent">Urgent</option>
+                                    <option value="high">High</option>
+                                    <option value="medium">Medium</option>
+                                    <option value="low">Low</option>
+                                </select>
+                            </div>
+                            <input type="text" id="searchBox" placeholder="Search complaints..." onkeyup="app.filterComplaints()" style="padding: 14px; border: 2px solid #e2e8f0; border-radius: 8px;">
+                        </div>
+
+                        <div id="complaintsContainer" class="complaints-grid"></div>
+                    </div>
+                </div>
+
+                <!-- Track Complaint Tab -->
+                <div id="track" class="tab-content">
+                    <div class="card">
+                        <h2 style="margin-bottom: 20px; color: #2d3748;">Track Your Complaint</h2>
+                        <div class="form-group">
+                            <label>Enter Complaint ID</label>
+                            <input type="text" id="trackingId" placeholder="e.g., C1234567890abc">
+                        </div>
+                        <button class="btn btn-primary" onclick="app.trackComplaint()">Track Complaint</button>
+                        <div id="trackingResult" style="margin-top: 20px;"></div>
+                    </div>
+                </div>
+
+                <!-- Admin Panel Tab -->
+                <div id="admin" class="tab-content">
+                    <div class="card">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                            <h2 style="margin: 0; color: #2d3748;">Admin Dashboard</h2>
+                            <div id="authContainer"></div>
+                        </div>
+                        
+                        <div class="stats" id="statsContainer"></div>
+
+                        <h3 style="margin: 30px 0 20px; color: #2d3748;">Manage Complaints</h3>
+                        <div class="filters">
+                            <button class="btn-small" style="background: #2b6cb0; color: white; padding: 10px 20px;" onclick="app.exportComplaints()">Export Data</button>
+                            <button class="btn-small" style="background: #8b5cf6; color: white; padding: 10px 20px;" onclick="authSystem.showAuditLogsModal()">View Audit Logs</button>
+                        </div>
+                        <div id="adminComplaintsContainer" class="complaints-grid"></div>
+                    </div>
+                </div>
+
+                <!-- Analytics Tab -->
+                <div id="analytics" class="tab-content">
+                    <div class="card">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                            <h2 style="margin: 0; color: #2d3748;">Analytics Dashboard</h2>
+                            <button class="btn-small" style="background: #10b981; color: white;" onclick="analytics.exportAnalytics()">Export Report</button>
+                        </div>
+                        
+                        <div class="analytics-grid">
+                            <div class="chart-card" id="categoryChart"></div>
+                            <div class="chart-card" id="statusChart"></div>
+                            <div class="chart-card full-width" id="trendChart"></div>
+                            <div class="chart-card full-width" id="metricsChart"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 SecureVoice. All rights reserved. Built with security and privacy in mind.</p>
+        </div>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+
+    <script src="data.js"></script>
+    <script src="fileHandler.js"></script>
+    <script src="emailService.js"></script>
+    <script src="commentSystem.js"></script>
+    <script src="wizardForm.js"></script>
+    <script src="analytics.js"></script>
+    <script src="authSystem.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
